@@ -432,7 +432,82 @@ public class Main
 
 efficient:
 
+public class Main
+{
+	public static void main(String[] args) {
+		int n=5;
+		int k=1;
+		for(int i=1; i<=n; i++) {
+			
+                //Front Spaces with first star
+				System.out.print(" ".repeat(n-i) + "*");
+				
+				//Middle spaces with second star
+				
+				if(i!=1 && i!=n){
+				    
+				    System.out.print(" ".repeat(k)+ "*");
+				    k=k+2;
+				}
+				
+			
+			if(i==n){
+			    System.out.print("*".repeat(2*n-2));
+			}
+			
+			System.out.println();
+			
 
+		}
+	}
+}
+
+
+
+===========================================================================
+
+
+
+14.  *********
+      *     *
+       *   *
+        * *
+         *
+
+
+
+
+code:
+
+public class Main
+{
+	public static void main(String[] args) {
+		int n=5;
+		int k=n;
+		for(int i=n; i>=1; i--) {
+			
+                //Front Spaces with first star
+				System.out.print(" ".repeat(n-i) + "*");
+				
+				//Middle spaces with second star
+				
+				if(i!=1 && i!=n){
+				    
+				    System.out.print(" ".repeat(k)+ "*");
+				    k=k-2;
+				}
+				
+			
+			if(i==n){
+			    System.out.print("*".repeat(2*n-2));
+			}
+			
+			System.out.println();
+			
+
+		}
+	}
+}
 
 
 
