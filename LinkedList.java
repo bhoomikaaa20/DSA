@@ -1,3 +1,5 @@
+import java.util.*;
+
 class LinkedList {
 
     public static void LLPrint(Node head) {
@@ -139,52 +141,155 @@ class LinkedList {
 
     }
 
+    public static Node DeletingByValue(Node head, String val) {
+        Node temp = head;
+        if (head.data.equals(val)) {
+            return DeleteHeadNode(head);
+        }
+        if (head.data == null) {
+            return head;
+        }
+        while (!temp.next.data.equals(val)) {
+            if (temp.next == null) {
+                System.out.println("Value not found");
+            }
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
+        return head;
+
+    }
+
+    public static Node Reverse(Node head) {
+        Node curr = head;
+        Node prev = null;
+        while (curr != null) {
+            Node newNode = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = newNode;
+
+        }
+        head = prev;
+        return head;
+    }
+
+    public static Boolean isCycle(Node head) {
+        /*
+         * Node temp = head;
+         * HashSet<Node> hs = new HashSet<>();
+         * while (temp != null) {
+         * if (hs.contains(temp)) {
+         * return true
+         * }
+         * hs.add(temp);
+         * temp = temp.next;
+         * }
+         * return false;
+         */
+
+        // OR
+
+        Node fast = head;
+        Node slow = head;
+        while (fast != null && slow != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static int CycleLen(Node head) {
+        Node fast = head;
+        Node slow = head;
+        int count = 0;
+        while (fast != null && slow != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (fast == slow) {
+                count++;
+                slow = slow.next;
+                while (slow != fast) {
+                    count++;
+                    slow = slow.next;
+                }
+                return count;
+            }
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
         Node n1 = new Node("A");
         Node n2 = new Node("B");
         Node n3 = new Node("C");
         n1.next = n2;
         n2.next = n3;
+        n3.next = n2;
+
         System.out.println(n1.data);
         System.out.println(n1.next.data);
         System.out.println(n1.next.next.data);
 
         Node head = n1;
 
-        LLPrint(head);
+        // LLPrint(head);
 
-        LLlength(head);
+        /*
+         * LLlength(head);
+         * 
+         * System.out.println("Searching Linked List");
+         * LLSearch(head, "B");
+         * 
+         * System.out.println("Updating Linked List");
+         * LLUpdate(head, 2, "X");
+         * LLPrint(head);
+         * 
+         * System.out.println("Adding at Ending");
+         * AddingAtEnd(head, "D");
+         * LLPrint(head);
+         * 
+         * System.out.println("Adding at Beginning");
+         * head = AddingAtBegin(head, "D");
+         * LLPrint(head);
+         * 
+         * System.out.println("Adding at middle");
+         * head = AddingAtMid(head, "Y", 0);
+         * LLPrint(head);
+         * 
+         * System.out.println("Deleting node at Start");
+         * head = DeleteHeadNode(head);
+         * LLPrint(head);
+         * 
+         * System.out.println("Deleting End node");
+         * DeleteEndNode(head);
+         * LLPrint(head);
+         * 
+         * System.out.println("Deleting At Index");
+         * DeletingAtIndex(head, 1);
+         * LLPrint(head);
+         * 
+         * System.out.println("Deleting by value");
+         * head = DeletingByValue(head, "B");
+         * LLPrint(head);
+         * 
+         * 
+         * 
+         * System.out.println("Reversing a LinkedList");
+         * head = Reverse(head);
+         * LLPrint(head);
+         * 
+         * System.out.println("Detecting a cycle");
+         * Boolean ans = isCycle(head);
+         * System.out.println(ans);
+         */
 
-        System.out.println("Searching Linked List");
-        LLSearch(head, "B");
-
-        System.out.println("Updating Linked List");
-        LLUpdate(head, 2, "X");
-        LLPrint(head);
-
-        System.out.println("Adding at Ending");
-        AddingAtEnd(head, "D");
-        LLPrint(head);
-
-        System.out.println("Adding at Beginning");
-        head = AddingAtBegin(head, "D");
-        LLPrint(head);
-
-        System.out.println("Adding at middle");
-        head = AddingAtMid(head, "Y", 0);
-        LLPrint(head);
-
-        System.out.println("Deleting node at Start");
-        head = DeleteHeadNode(head);
-        LLPrint(head);
-
-        System.out.println("Deleting End node");
-        DeleteEndNode(head);
-        LLPrint(head);
-
-        System.out.println("Deleting At Index");
-        DeletingAtIndex(head, 1);
-        LLPrint(head);
+        System.out.println("Calculating Cycle length");
+        int len = CycleLen(head);
+        System.out.println(len);
 
     }
 }
