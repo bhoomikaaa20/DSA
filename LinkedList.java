@@ -286,7 +286,7 @@ class LinkedList {
          * Boolean ans = isCycle(head);
          * System.out.println(ans);
          */
-
+        
         System.out.println("Calculating Cycle length");
         int len = CycleLen(head);
         System.out.println(len);
